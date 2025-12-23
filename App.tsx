@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import {
 	EditorState,
 	GradientSettings,
@@ -246,6 +247,9 @@ const App: React.FC = () => {
 				}}
 				status={exportStatus}
 			/>
+
+			{/* Vercel Analytics */}
+			<Analytics />
 		</div>
 	);
 };
