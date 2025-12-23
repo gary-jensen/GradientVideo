@@ -140,9 +140,12 @@ const App: React.FC = () => {
 			{/* Header */}
 			<header className="h-16 border-b border-zinc-800 flex items-center justify-between px-6 bg-[#0a0a0a] shrink-0">
 				<div className="flex items-center gap-2">
-					<div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
-						<i className="fa-solid fa-wand-magic-sparkles text-white"></i>
-					</div>
+					<img
+						src="/gradient-video-icon.png"
+						alt="GradientVideo"
+						width={32}
+						height={32}
+					/>
 					<h1 className="text-xl font-bold tracking-tight">
 						GradientVideo
 					</h1>
