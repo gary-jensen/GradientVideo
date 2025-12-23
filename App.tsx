@@ -190,14 +190,16 @@ const App: React.FC = () => {
 					</div>
 				) : (
 					<>
-						<div className="flex-1 relative overflow-auto bg-zinc-900/50 flex flex-row items-center justify-center">
-							<VideoPreview
-								state={state}
-								onCropChange={updateCrop}
-								onExportReady={(exportFn) => {
-									exportVideoRef.current = exportFn;
-								}}
-							/>
+						<div className="flex-1 relative overflow-auto bg-zinc-900/50 flex flex-row items-center justify-center p-4">
+							<div className="w-full h-full flex items-center justify-center">
+								<VideoPreview
+									state={state}
+									onCropChange={updateCrop}
+									onExportReady={(exportFn) => {
+										exportVideoRef.current = exportFn;
+									}}
+								/>
+							</div>
 						</div>
 
 						<Sidebar

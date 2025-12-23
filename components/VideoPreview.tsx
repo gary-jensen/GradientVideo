@@ -1121,9 +1121,17 @@ const VideoPreview: React.FC<VideoPreviewProps> = ({
 			  }deg, ${gradient.colors.join(", ")})`;
 
 	// Calculate canvas container size
+	// Account for padding in the wrapper
+	const wrapperPadding = config.padding * 2;
 	let canvasContainerStyle: React.CSSProperties = {
 		borderRadius: `${config.borderRadius}px`,
 		overflow: "visible",
+		width: `calc(100% - ${wrapperPadding}px)`,
+		height: `calc(100% - ${wrapperPadding}px)`,
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
+		margin: `${config.padding}px`,
 	};
 
 	// Calculate base video size
@@ -1165,6 +1173,7 @@ const VideoPreview: React.FC<VideoPreviewProps> = ({
 		maxHeight: "100%",
 		minWidth: "400px",
 		borderRadius: "16px",
+		boxSizing: "border-box",
 	};
 
 	if (!config.crop.enabled) {
@@ -1176,7 +1185,10 @@ const VideoPreview: React.FC<VideoPreviewProps> = ({
 		<div
 			ref={containerRef}
 			className="relative flex items-center justify-center shadow-2xl overflow-visible"
-			style={canvasWrapperStyle}
+			style={{
+				...canvasWrapperStyle,
+				aspectRatio: `${canvasSize.width + config.padding * 2} / ${canvasSize.height + config.padding * 2}`,
+			}}
 		>
 			{/* Hidden video element for source */}
 			<video
@@ -1197,9 +1209,12 @@ const VideoPreview: React.FC<VideoPreviewProps> = ({
 					className="block"
 					style={{
 						display: "block",
-						// Canvas CSS size includes shadow padding to show full shadow
-						width: `${canvasSize.width}px`,
-						height: `${canvasSize.height}px`,
+						// Canvas CSS size - use 100% to fill container, aspect-ratio maintains proportions
+						width: "100%",
+						height: "auto",
+						aspectRatio: `${canvasSize.width} / ${canvasSize.height}`,
+						maxWidth: "100%",
+						maxHeight: "100%",
 					}}
 				/>
 			</div>
